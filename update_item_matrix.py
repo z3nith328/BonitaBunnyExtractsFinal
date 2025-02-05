@@ -3,11 +3,11 @@ from psycopg2 import sql
 
 # Database connection settings
 DB_CONFIG = {
-    "dbname": "your_database",
-    "user": "your_user",
-    "password": "your_password",
-    "host": "your_host",
-    "port": "your_port"
+    "dbname": "bonita_bunny_extracts",
+    "user": "chris_layton",
+    "password": "Rainforest2011",
+    "host": "5432",
+    "port": "5432"
 }
 
 def update_item_matrix(item_id, category, material, cord_size, status):
