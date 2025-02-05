@@ -1,9 +1,3 @@
-CREATE TRIGGER trg_update_inventory_on_order_change
-AFTER INSERT OR UPDATE OR DELETE ON order_items
-FOR EACH ROW
-EXECUTE FUNCTION update_inventory_on_order_change();
-
-
 CREATE OR REPLACE FUNCTION update_inventory_demand_forecasting()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -41,3 +35,8 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_inventory_demand_forecasting
+AFTER INSERT ON order_items
+FOR EACH ROW
+EXECUTE FUNCTION update_inventory_demand_forecasting();
