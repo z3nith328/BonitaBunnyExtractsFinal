@@ -5,11 +5,11 @@ from flask import Flask, request, jsonify
 
 # Database connection settings
 DB_CONFIG = {
-    "dbname": "your_database",
-    "user": "your_user",
-    "password": "your_password",
-    "host": "your_host",
-    "port": "your_port"
+    "dbname": "bonita_bunny_extracts",
+    "user": "chris_layton",
+    "password": "Rainforest2011",
+    "host": "5432",
+    "port": "5432"
 }
 
 app = Flask(__name__)
