@@ -3,11 +3,11 @@ from psycopg2 import sql
 
 # Database connection settings
 DB_CONFIG = {
-    "dbname": "your_database",
-    "user": "your_user",
-    "password": "your_password",
-    "host": "your_host",
-    "port": "your_port"
+    "dbname": "bonita_bunny_extracts",
+    "user": "chris_layton",
+    "password": "Rainforest2011",
+    "host": "5432",
+    "port": "5432"
 }
 
 def update_supplier(supplier_id, supplier_name, last_order_qty, last_order_total_cost, last_order_date, last_delivery_date):
