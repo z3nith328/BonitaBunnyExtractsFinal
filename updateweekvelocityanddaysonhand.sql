@@ -40,7 +40,15 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_update_sales_velocity_and_days_on_hand
-AFTER INSERT OR UPDATE ON order_items
-FOR EACH ROW
-EXECUTE FUNCTION fn_update_sales_velocity_and_days_on_hand();
+SELECT cron.schedule(
+    'update_sales_velocity_daily',
+    '0 0 * * *',  -- Runs daily at midnight
+    'SELECT fn_update_sales_velocity_and_days_on_hand();'
+);
+
+SELECT cron.schedule(
+    'update_sales_velocity_weekly',
+    '0 1 * * 1',  -- Runs every Monday at 1 AM
+    'SELECT fn_update_sales_velocity_and_days_on_hand();'
+);
+
