@@ -8,7 +8,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_update_order_status_tracking
-AFTER UPDATE ON orders
-FOR EACH ROW
-EXECUTE FUNCTION update_order_status_tracking();
+SELECT cron.schedule(
+    'update_order_status_tracking',
+    '0 * * * *',  -- Runs every hour
+    'SELECT fn_log_order_status_changes();'
+);
