@@ -36,7 +36,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_update_inventory_demand_forecasting
-AFTER INSERT ON order_items
-FOR EACH ROW
-EXECUTE FUNCTION update_inventory_demand_forecasting();
+SELECT cron.schedule(
+    'update_inventory_demand_forecasting',
+    '0 0 * * *',  -- Runs daily at midnight
+    'SELECT fn_update_inventory_demand_forecasting();'
+);
